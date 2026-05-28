@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fleet Selection | SAZ Travels</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 30px 60px -15px rgba(10, 25, 47, 0.05);
+        }
+        .glass-card:hover {
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transform: translateY(-4px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(255, 219, 209, 0.3), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(210, 224, 254, 0.2), transparent 50%);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        /* Mobile menu */
+        #mobile-menu {
+            transition: max-height 0.35s ease, opacity 0.35s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#d2e0fe",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary": "#b02f00",
+                        "on-secondary-container": "#55637d",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "secondary-fixed-dim": "#b9c7e4",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb5a0",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-container": "#cca72f",
+                        "on-primary-fixed-variant": "#862200",
+                        "primary-container": "#ff5722",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container": "#edeeef",
+                        "outline": "#907067",
+                        "on-background": "#191c1d",
+                        "surface-tint": "#b02f00",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffe088",
+                        "secondary-fixed": "#d6e3ff",
+                        "primary-fixed": "#ffdbd1",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "on-tertiary-container": "#4e3d00",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary": "#735c00",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#0d1c32",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b4039",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "secondary": "#515f78",
+                        "on-primary-container": "#541200",
+                        "outline-variant": "#e4beb4",
+                        "surface-container-low": "#f3f4f5",
+                        "surface": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#3b0900",
+                        "on-secondary-fixed-variant": "#39475f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "20px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Manrope"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-white/20 shadow-[0_30px_60px_-15px_rgba(10,25,47,0.05)]" id="main-nav">
+<div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 md:px-margin-desktop h-20">
+  <a class="font-display-lg text-headline-md font-bold text-primary" href="index.html">SAZ Travels</a>
+  <nav class="hidden md:flex items-center gap-10 font-body-md text-label-md tracking-[0.05em]">
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="index.html">Home</a>
+    <a class="text-primary relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-tertiary after:rounded-full" href="our-fleet.html">Fleet</a>
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="tour-packages.html">Packages</a>
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="about-contact.html">About</a>
+    <a class="text-on-surface hover:text-primary transition-colors duration-300" href="about-contact.html#contact">Contact</a>
+  </nav>
+  <div class="flex items-center gap-3">
+    <a href="about-contact.html#contact" class="hidden md:inline-flex bg-primary-container text-on-primary font-label-md py-3 px-8 rounded-full hover:scale-[1.02] active:scale-95 transition-transform shadow-[0_8px_20px_-4px_rgba(255,87,34,0.3)]">Book Now</a>
+    <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors" aria-label="Toggle menu">
+      <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb1"></span>
+      <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb2"></span>
+      <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb3"></span>
+    </button>
+  </div>
+</div>
+<!-- Mobile Dropdown -->
+<div id="mobile-menu" class="md:hidden bg-surface/95 backdrop-blur-xl border-t border-white/10 px-6">
+  <div class="py-4 flex flex-col gap-4">
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="index.html">Home</a>
+    <a class="font-label-md text-primary py-2 border-b border-outline-variant/20" href="our-fleet.html">Our Fleet</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="tour-packages.html">Tour Packages</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="about-contact.html">About</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="about-contact.html#contact">Contact</a>
+    <a href="about-contact.html#contact" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md text-center mt-2">Book Now</a>
+  </div>
+</div>
+</header>
+<main class="pt-32 pb-24 hero-gradient min-h-screen">
+<!-- Hero Section -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mb-20 text-center">
+<span class="font-label-md text-tertiary tracking-widest uppercase mb-4 block">Our Premium Fleet</span>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6 leading-tight">Elite Travel Solutions for <br/> Every Occasion.</h1>
+<p class="max-w-2xl mx-auto font-body-lg text-body-lg text-on-surface-variant">Experience the pinnacle of coastal luxury with our meticulously maintained vehicles, designed for comfort, safety, and sophisticated travel in Pondicherry.</p>
+</section>
+<!-- Category Filter -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop mb-16">
+<div class="flex flex-wrap justify-center gap-4">
+<button class="px-8 py-3 rounded-full bg-primary text-on-primary font-label-md shadow-lg">All Vehicles</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Executive Sedans</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Premium SUVs</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Tempo Travellers</button>
+<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Luxury Buses</button>
+</div>
+</section>
+<!-- Fleet Grid -->
+<section class="max-w-[1280px] mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Vehicle Card 1: Sedan -->
+<div class="glass-card rounded-xl overflow-hidden group transition-all duration-500 flex flex-col h-full">
+<div class="relative overflow-hidden h-64">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A pristine white luxury executive sedan parked on a sun-drenched coastal road in Pondicherry. The image captures the sleek aerodynamic lines of the car with soft afternoon light reflecting off its polished surface. The background features a blurred view of French Quarter architecture with vibrant bougainvillea, maintaining a bright, airy, and high-end travel aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC30LrBtZQ7tDNsYzjaGDeChdJLIg3p5v2-rebhvXP8EUAGNgdxrtgKnO3NQG7Z_kMtOo2sila7KvbBrJ6e1h9hT0_8bMGd47XpQvyM1TT90O-QMI1qbBtKfAsibqwoJ0qFbnEEfRM8D-pG92l727E6twQKsYN98GhXFoGAh1oUndGkd01HVVj9CT51lymcTI_4bBBeJEZjjP-V1adwGz_QcGYdN91zRpeXXXLd102WBW4Z5xWJGGBstvpXEh152FxtNADr6KzbHYo"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-sm text-primary font-bold">EXECUTIVE</div>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Mercedes Benz E-Class</h3>
+<p class="text-label-sm text-tertiary font-semibold uppercase tracking-wider">Premium Sedan</p>
+</div>
+<div class="text-right">
+<span class="block text-label-sm text-on-surface-variant">Starting at</span>
+<span class="font-headline-md text-primary">₹3,500</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">person</span>
+<span class="text-label-md">4 Passengers</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">ac_unit</span>
+<span class="text-label-md">Dual-Zone AC</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">luggage</span>
+<span class="text-label-md">2 Large Bags</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">wifi</span>
+<span class="text-label-md">Free Wi-Fi</span>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="flex items-center gap-2 text-label-md font-bold text-on-surface hover:text-primary transition-colors">
+                                DETAILS <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<a class="bg-[#25D366] text-white flex items-center gap-2 px-6 py-3 rounded-full hover:shadow-lg transition-all active:scale-95" href="https://wa.me/919876543210" target="_blank">
+<span class="font-label-md">Book via WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 2: SUV -->
+<div class="glass-card rounded-xl overflow-hidden group transition-all duration-500 flex flex-col h-full">
+<div class="relative overflow-hidden h-64">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A powerful black luxury SUV positioned on a scenic beachfront trail during golden hour. The vehicle's rugged yet refined design is highlighted by warm sunset lighting, creating long shadows and brilliant highlights on the chrome accents. The environment is a tranquil Pondicherry beach with palm trees and a soft orange sky, emphasizing comfort and adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy6No0ehBTY2IdjeaXZ5qPKBziavMFgAhAPZdouNa5dztrZkNE1X-OxRPYwB58Ua7yYug2PL6X8vusKMaTfxNFSipmHHRmUsjKFI3GT0liyuHLnGxZoWqd01pmVN9-Z9qru1AL5qPIgnZo60GJyXy5r6UsdwjmejufhB-7ObpwY2ffIrYfyXSiEp9pzBbguhXyqg-ulKLtav_vYm8SQLqjcLshPo_UTAyt_f8QKVhJc3mtlTodmq4BO5BCBBZDOoFkvyoAtWEu2_4"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-sm text-primary font-bold">POPULAR</div>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Toyota Innova Crysta</h3>
+<p class="text-label-sm text-tertiary font-semibold uppercase tracking-wider">Premium SUV</p>
+</div>
+<div class="text-right">
+<span class="block text-label-sm text-on-surface-variant">Starting at</span>
+<span class="font-headline-md text-primary">₹2,800</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">group</span>
+<span class="text-label-md">7 Passengers</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">ac_unit</span>
+<span class="text-label-md">Rear AC Vents</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">airline_seat_recline_extra</span>
+<span class="text-label-md">Captain Seats</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">charging_station</span>
+<span class="text-label-md">USB Ports</span>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="flex items-center gap-2 text-label-md font-bold text-on-surface hover:text-primary transition-colors">
+                                DETAILS <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<a class="bg-[#25D366] text-white flex items-center gap-2 px-6 py-3 rounded-full hover:shadow-lg transition-all active:scale-95" href="https://wa.me/919876543210" target="_blank">
+<span class="font-label-md">Book via WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 3: Tempo Traveller -->
+<div class="glass-card rounded-xl overflow-hidden group transition-all duration-500 flex flex-col h-full">
+<div class="relative overflow-hidden h-64">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A modern, high-roof silver luxury Tempo Traveller parked in a spacious, contemporary driveway surrounded by lush tropical landscaping. The vehicle looks pristine and well-maintained under soft, diffused morning light. The composition is clean and professional, showcasing the vehicle's spaciousness and premium group travel capability in a high-key, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzyBx9wBwZLtX3wj4LOnvDKbcXnn_UsPCzZeTMaS4BwC4I8mV7uAdUrZblvWtJI2p45nugHp8Kr5t5VqlDkQ0ffv31BGHyrXgGCOplpSTXsYe0HM89yf-8kdzbiRgWDn_j9hvHLMyaaD2IQ6vRYJk0X6igQwjKeK4d87cQCO-Rq2QY3BQfReCB3LAt-jw9sUscEkFrojVBQqWcbO_yHzuLUwAo9dKOZB0_R2KFKCEzxXZdyrPxEAam5W4Wtrr5f8vkHNREjqyuyYE"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-sm text-primary font-bold">GROUP</div>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Urban Traveller</h3>
+<p class="text-label-sm text-tertiary font-semibold uppercase tracking-wider">Tempo Traveller</p>
+</div>
+<div class="text-right">
+<span class="block text-label-sm text-on-surface-variant">Starting at</span>
+<span class="font-headline-md text-primary">₹5,500</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">groups</span>
+<span class="text-label-md">12+ Seats</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">tv</span>
+<span class="text-label-md">LCD Screen</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">settings_input_component</span>
+<span class="text-label-md">Hi-Fi Audio</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">airline_seat_legroom_extra</span>
+<span class="text-label-md">Extra Legroom</span>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="flex items-center gap-2 text-label-md font-bold text-on-surface hover:text-primary transition-colors">
+                                DETAILS <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<a class="bg-[#25D366] text-white flex items-center gap-2 px-6 py-3 rounded-full hover:shadow-lg transition-all active:scale-95" href="https://wa.me/919876543210" target="_blank">
+<span class="font-label-md">Book via WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 4: Bus -->
+<div class="glass-card rounded-xl overflow-hidden group transition-all duration-500 flex flex-col h-full lg:col-span-2">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="relative overflow-hidden h-80 md:h-full">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A grand luxury tourist coach with a vibrant and modern livery, parked near a prominent Pondicherry landmark like the Sacred Heart Basilica. The lighting is bright and crisp, showcasing the coach's large panoramic windows and sleek exterior. The surrounding environment is clean and spacious, conveying a sense of organized, premium large-scale logistics and group travel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjHi_xJourtQxqbt6vSwh2alYcTlxfG7ffT4-5UVOYqid7BrXA-AMTPtZErRrPpSSrewumtAnuef_NIrRQovIc6OyBe-4px5S6je8rHUknPe40Al42sM4VKgjvjIq75wiJnikPKKBZXgvrwNmu_5gBSz9MbN_tkJhakbkyVL7rvfWQJhmw_pqY7LCHBE8UN82PJnQ2g5Qy7JmKtwSJaFZm48zOiEy6cC9jQPc0CMQ1pWQyVtVdvtRtEtUOb3d38ax61SaR4guSrOo"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-sm text-primary font-bold">LUXURY COACH</div>
+</div>
+<div class="p-8 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-display-lg text-headline-lg text-on-surface mb-2">Grand Volvo B11R</h3>
+<p class="text-label-md text-tertiary font-semibold uppercase tracking-wider">Multi-Axle Coach</p>
+</div>
+<div class="text-right">
+<span class="block text-label-sm text-on-surface-variant">Starting at</span>
+<span class="font-headline-md text-primary text-3xl">₹15,000</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant mb-8">Our flagship luxury coach offers unparalleled comfort for large groups. Featuring push-back semi-sleeper seats, individual climate control, and a state-of-the-art entertainment system.</p>
+<div class="grid grid-cols-3 gap-6 mb-10">
+<div class="text-center">
+<span class="material-symbols-outlined text-tertiary block text-3xl mb-1">event_seat</span>
+<span class="text-label-sm font-bold">45 Seats</span>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-tertiary block text-3xl mb-1">wc</span>
+<span class="text-label-sm font-bold">Onboard Restroom</span>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-tertiary block text-3xl mb-1">inventory_2</span>
+<span class="text-label-sm font-bold">Large Underbay</span>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="flex items-center gap-2 text-label-md font-bold text-on-surface hover:text-primary transition-colors">
+                                    VIEW SPECIFICATIONS <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<a class="bg-[#25D366] text-white flex items-center gap-3 px-8 py-4 rounded-full hover:shadow-xl transition-all active:scale-95 shadow-lg" href="#">
+<span class="font-label-md">WhatsApp Inquiry</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 5: Mini Bus -->
+<div class="glass-card rounded-xl overflow-hidden group transition-all duration-500 flex flex-col h-full">
+<div class="relative overflow-hidden h-64">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A clean, modern white luxury mini-bus featuring tinted glass and chrome detailing, parked under a canopy of rain trees in the French Quarter of Pondicherry. Soft morning light filters through the leaves, creating a peaceful and sophisticated atmosphere. The image emphasizes high-quality corporate or family group transport with a serene, professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIQXuasLHH5tqF3Tj3-zQUQRhfsA4uFib4LFMImeNotj0UV7YfCkMpeWuC95u8u_zdJREweWCLyFh7siPrretWVDYb0La3WupbNGpRukMJWx62RaRQZ4i111s4v28fCBpDMMRZIkRm9lRwNtH0cirt7vjUKxwC-ruwRNr_hNa1XKC8j5RUJajI42J2x2hSFq1sLiXlGLucxUPsXI8pXuZgVfOAyjzVChzWSeqzeafP2DK7cwP0wdEf5mavR1CmHoPh9FODn6dgplM"/>
+</div>
+<div class="p-8 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Eicher Premium</h3>
+<p class="text-label-sm text-tertiary font-semibold uppercase tracking-wider">Mini Bus</p>
+</div>
+<div class="text-right">
+<span class="block text-label-sm text-on-surface-variant">Starting at</span>
+<span class="font-headline-md text-primary">₹8,000</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">groups</span>
+<span class="text-label-md">21 Passengers</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">cool_to_dry</span>
+<span class="text-label-md">Powerful AC</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">speaker_group</span>
+<span class="text-label-md">PA System</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary">wb_sunny</span>
+<span class="text-label-md">Panoramic Glass</span>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex items-center justify-between">
+<button class="flex items-center gap-2 text-label-md font-bold text-on-surface hover:text-primary transition-colors">
+                                DETAILS <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<a class="bg-[#25D366] text-white flex items-center gap-2 px-6 py-3 rounded-full hover:shadow-lg transition-all active:scale-95" href="https://wa.me/919876543210" target="_blank">
+<span class="font-label-md">Book via WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Features -->
+<section class="mt-24 max-w-[1280px] mx-auto px-margin-desktop">
+<div class="glass-card rounded-2xl p-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<h4 class="font-headline-md text-on-surface mb-2">Sanitized Daily</h4>
+<p class="text-label-sm text-on-surface-variant">Deep cleaning before and after every trip.</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<h4 class="font-headline-md text-on-surface mb-2">Elite Drivers</h4>
+<p class="text-label-sm text-on-surface-variant">Professionally trained and bilingual chauffeurs.</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">history</span>
+<h4 class="font-headline-md text-on-surface mb-2">Punctuality</h4>
+<p class="text-label-sm text-on-surface-variant">Arrival 15 minutes prior to booking time.</p>
+</div>
+<div class="text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<h4 class="font-headline-md text-on-surface mb-2">24/7 Support</h4>
+<p class="text-label-sm text-on-surface-variant">Always available for changes or help.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-surface-container-highest w-full py-16">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-[1280px] mx-auto px-margin-desktop">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-headline-md text-surface dark:text-on-surface mb-6">SAZ Travels</div>
+<p class="text-surface-variant text-body-md mb-8">Elevating transportation through meticulous planning and premium fleet management in the heart of Pondicherry.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-xl">share</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-primary-fixed font-bold text-label-md tracking-wider uppercase">Our Fleet</h5>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Executive Sedans</a>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Premium SUVs</a>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Tempo Travellers</a>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Luxury Coaches</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-primary-fixed font-bold text-label-md tracking-wider uppercase">Services</h5>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Airport Transfers</a>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Corporate Travel</a>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Wedding Fleet</a>
+<a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 transition-transform duration-300" href="#">Tour Packages</a>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-primary-fixed font-bold text-label-md tracking-wider uppercase">Contact Info</h5>
+<div class="flex items-start gap-3 text-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed">location_on</span>
+<span>No. 45, French Quarter Street,<br/>Pondicherry - 605001</span>
+</div>
+<div class="flex items-center gap-3 text-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed">call</span>
+<span>+91 98765 43210</span>
+</div>
+<div class="flex items-center gap-3 text-surface-variant">
+<span class="material-symbols-outlined text-tertiary-fixed">mail</span>
+<span>booking@saztravels.com</span>
+</div>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto px-margin-desktop mt-16 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-surface-variant text-label-sm">© 2024 SAZ Travels. Premium Transportation &amp; Logistics.</p>
+<div class="flex gap-8 text-label-sm text-surface-variant">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-white transition-colors" href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom Nav -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-xl border-t border-outline-variant/30 px-2 py-2 z-50 flex justify-around items-center">
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="index.html">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-[10px] font-label-md">Home</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-primary px-3 py-1 rounded-xl" href="our-fleet.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">commute</span>
+    <span class="text-[10px] font-label-md">Fleet</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="tour-packages.html">
+    <span class="material-symbols-outlined">explore</span>
+    <span class="text-[10px] font-label-md">Packages</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="about-contact.html">
+    <span class="material-symbols-outlined">info</span>
+    <span class="text-[10px] font-label-md">About</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="about-contact.html#contact">
+    <span class="material-symbols-outlined">call</span>
+    <span class="text-[10px] font-label-md">Contact</span>
+  </a>
+</div>
+<script>
+        // Micro-interaction for filter buttons
+        const filterButtons = document.querySelectorAll('button.rounded-full.glass-card, button.rounded-full.bg-primary');
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary', 'shadow-lg');
+                    b.classList.add('glass-card', 'text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary', 'shadow-lg');
+                btn.classList.remove('glass-card', 'text-on-surface-variant');
+            });
+        });
+
+        // Sticky header transition
+        const header = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-xl');
+            } else {
+                header.classList.remove('shadow-xl');
+            }
+        });
+
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hb1 = document.getElementById('hb1');
+        const hb2 = document.getElementById('hb2');
+        const hb3 = document.getElementById('hb3');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hb1.style.transform = mobileMenu.classList.contains('open') ? 'rotate(45deg) translateY(8px)' : '';
+            hb2.style.opacity = mobileMenu.classList.contains('open') ? '0' : '1';
+            hb3.style.transform = mobileMenu.classList.contains('open') ? 'rotate(-45deg) translateY(-8px)' : '';
+        });
+    </script>
+</body></html>

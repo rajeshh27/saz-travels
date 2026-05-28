@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAZ Travels | Luxury Transportation in Pondicherry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-nav {
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.9));
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Mobile menu */
+        #mobile-menu {
+            transition: max-height 0.35s ease, opacity 0.35s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#d2e0fe",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "primary": "#b02f00",
+                        "on-secondary-container": "#55637d",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "secondary-fixed-dim": "#b9c7e4",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb5a0",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-container": "#cca72f",
+                        "on-primary-fixed-variant": "#862200",
+                        "primary-container": "#ff5722",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container": "#edeeef",
+                        "outline": "#907067",
+                        "on-background": "#191c1d",
+                        "surface-tint": "#b02f00",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffe088",
+                        "secondary-fixed": "#d6e3ff",
+                        "primary-fixed": "#ffdbd1",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "on-tertiary-container": "#4e3d00",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary": "#735c00",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#0d1c32",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b4039",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "secondary": "#515f78",
+                        "on-primary-container": "#541200",
+                        "outline-variant": "#e4beb4",
+                        "surface-container-low": "#f3f4f5",
+                        "surface": "#f8f9fa",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#3b0900",
+                        "on-secondary-fixed-variant": "#39475f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "20px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Manrope"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-white/20 shadow-[0_30px_60px_-15px_rgba(10,25,47,0.05)]" id="main-nav">
+<div class="flex justify-between items-center max-w-max-width mx-auto px-6 md:px-margin-desktop h-20">
+  <a class="font-display-lg text-headline-md font-bold text-primary" href="index.html">SAZ Travels</a>
+  <!-- Desktop Links -->
+  <div class="hidden md:flex items-center gap-8">
+    <a class="font-body-md text-label-md tracking-[0.05em] text-primary relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-tertiary after:rounded-full" href="index.html">Home</a>
+    <a class="font-body-md text-label-md tracking-[0.05em] text-on-surface hover:text-primary transition-colors duration-300" href="our-fleet.html">Fleet</a>
+    <a class="font-body-md text-label-md tracking-[0.05em] text-on-surface hover:text-primary transition-colors duration-300" href="tour-packages.html">Packages</a>
+    <a class="font-body-md text-label-md tracking-[0.05em] text-on-surface hover:text-primary transition-colors duration-300" href="about-contact.html">About</a>
+    <a class="font-body-md text-label-md tracking-[0.05em] text-on-surface hover:text-primary transition-colors duration-300" href="about-contact.html#contact">Contact</a>
+  </div>
+  <div class="flex items-center gap-3">
+    <a href="about-contact.html#contact" class="hidden md:inline-flex bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-label-md hover:scale-[1.02] active:scale-95 transition-transform">Book Now</a>
+    <!-- Hamburger -->
+    <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors" aria-label="Toggle menu">
+      <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb1"></span>
+      <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb2"></span>
+      <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb3"></span>
+    </button>
+  </div>
+</div>
+<!-- Mobile Dropdown -->
+<div id="mobile-menu" class="md:hidden bg-surface/95 backdrop-blur-xl border-t border-white/10 px-6">
+  <div class="py-4 flex flex-col gap-4">
+    <a class="font-label-md text-primary py-2 border-b border-outline-variant/20" href="index.html">Home</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="our-fleet.html">Our Fleet</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="tour-packages.html">Tour Packages</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="about-contact.html">About</a>
+    <a class="font-label-md text-on-surface hover:text-primary py-2 border-b border-outline-variant/20" href="about-contact.html#contact">Contact</a>
+    <a href="about-contact.html#contact" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md text-center mt-2">Book Now</a>
+  </div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Luxury SUV on Highway" class="w-full h-full object-cover scale-105" data-alt="A side-profile cinematic shot of a high-end luxury SUV driving along a pristine, coastal highway in Pondicherry during the golden hour. The vehicle's metallic finish reflects the warm sunset glow, with the French Quarter's distinctive architecture faintly visible in the blurred background. The atmosphere is serene and prestigious, utilizing a palette of deep oranges, navy blues, and soft whites. The lighting is low-key and dramatic, emphasizing the sleek lines of the premium car." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB-TK4MFJ1-A4MUsfPFia_qvgDZxuUshZ5AfPYP_koBGSoQknkqeAiBikjguu4nQeTnL7SfGgBtTNLBbzsGnAZ0gO8zBj1gJTggbCngiUUMWdeyV2zipun2RKI1SMExT7e1OQQNelolefi9aWR4-0GFdY3rJG2b5F0sWFlvrKVTkPtQ3_zsGsY1CTZP95kcLitwYE5wLNJT9aBb2H0-CYcp2qyky32m-dH8uenpRapUyC7MZiYIhQFYZX2vbW4xcFFmdBwoQrBY7M"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="text-white space-y-6">
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg">Luxury Travel Experience Across Pondicherry</h1>
+<p class="font-body-lg text-body-lg text-white/90">Reliable Cars • Comfortable Journeys • Trusted Service</p>
+<div class="flex flex-wrap gap-4 pt-4">
+<a href="about-contact.html#contact" class="bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-label-md text-lg shadow-[0_0_20px_rgba(255,87,34,0.3)] hover:scale-105 transition-all">Book Now</a>
+<a href="https://wa.me/919876543210" target="_blank" class="glass-card text-white px-8 py-4 rounded-full font-label-md text-lg flex items-center gap-2 hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+                        WhatsApp Us
+                    </a>
+</div>
+</div>
+<!-- Booking Form -->
+<div class="glass-card p-8 rounded-2xl border-white/10 animate-float">
+<h3 class="font-display-lg text-headline-md text-white mb-6">Plan Your Trip</h3>
+<form class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-white/70 text-label-sm uppercase">Pickup Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/50" data-icon="location_on">location_on</span>
+<input class="w-full bg-white/5 border border-white/20 rounded-lg py-3 pl-10 text-white placeholder:text-white/30 focus:border-primary-container outline-none transition-all" placeholder="Airport, Hotel..." type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-white/70 text-label-sm uppercase">Destination</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/50" data-icon="map">map</span>
+<input class="w-full bg-white/5 border border-white/20 rounded-lg py-3 pl-10 text-white placeholder:text-white/30 focus:border-primary-container outline-none transition-all" placeholder="Where to?" type="text"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-white/70 text-label-sm uppercase">Pickup Date</label>
+<input class="w-full bg-white/5 border border-white/20 rounded-lg py-3 px-4 text-white outline-none focus:border-primary-container transition-all" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-white/70 text-label-sm uppercase">Travelers</label>
+<select class="w-full bg-white/5 border border-white/20 rounded-lg py-3 px-4 text-white outline-none focus:border-primary-container transition-all appearance-none">
+<option class="text-black">1-3 Persons</option>
+<option class="text-black">4-7 Persons</option>
+<option class="text-black">8+ Persons</option>
+</select>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-xl font-label-md text-lg mt-4 hover:brightness-110 transition-all">Check Availability</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-32 max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop bg-surface">
+<div class="text-center mb-16 reveal">
+<span class="text-tertiary font-label-md uppercase tracking-widest">Premium Offerings</span>
+<h2 class="font-display-lg text-headline-lg mt-4">Our Bespoke Services</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Service Cards -->
+<div class="group bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all duration-500 reveal">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="flight_takeoff">flight_takeoff</span>
+</div>
+<h4 class="font-display-lg text-headline-md mb-3">Airport Transfers</h4>
+<p class="text-on-surface-variant">Punctual and comfortable pickups from Chennai and Pondicherry airports with luggage assistance.</p>
+</div>
+<div class="group bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all duration-500 reveal" style="transition-delay: 100ms">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="family_restroom">family_restroom</span>
+</div>
+<h4 class="font-display-lg text-headline-md mb-3">Family Trips</h4>
+<p class="text-on-surface-variant">Spacious vehicles designed for maximum comfort and safety for your family adventures.</p>
+</div>
+<div class="group bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all duration-500 reveal" style="transition-delay: 200ms">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="business_center">business_center</span>
+</div>
+<h4 class="font-display-lg text-headline-md mb-3">Corporate Travel</h4>
+<p class="text-on-surface-variant">Reliable logistics for executives and corporate guests with professional, silent service.</p>
+</div>
+<div class="group bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all duration-500 reveal">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="explore">explore</span>
+</div>
+<h4 class="font-display-lg text-headline-md mb-3">Group Tours</h4>
+<p class="text-on-surface-variant">Guided local sightseeing and multi-city tours tailored for large groups.</p>
+</div>
+<div class="group bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all duration-500 reveal" style="transition-delay: 100ms">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="celebration">celebration</span>
+</div>
+<h4 class="font-display-lg text-headline-md mb-3">Wedding Transportation</h4>
+<p class="text-on-surface-variant">Elegant fleet options to make your special day transportation seamless and stylish.</p>
+</div>
+<div class="group bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 hover:border-primary/50 transition-all duration-500 reveal" style="transition-delay: 200ms">
+<div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="distance">distance</span>
+</div>
+<h4 class="font-display-lg text-headline-md mb-3">Outstation Travel</h4>
+<p class="text-on-surface-variant">Long-distance premium travel across South India with experienced drivers.</p>
+</div>
+</div>
+</section>
+<!-- Fleet Categories (Bento Style) -->
+<section class="py-32 bg-surface-container-high overflow-hidden">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+<div class="max-w-xl">
+<span class="text-tertiary font-label-md uppercase tracking-widest">Our Fleet</span>
+<h2 class="font-display-lg text-headline-lg mt-4">Luxury For Every Occasion</h2>
+<p class="text-on-surface-variant mt-4">Choose from our meticulously maintained fleet of high-end vehicles.</p>
+</div>
+<a href="our-fleet.html" class="border border-primary text-primary px-8 py-3 rounded-full font-label-md hover:bg-primary hover:text-white transition-all">View All Fleet</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-[1200px] md:h-[800px]">
+<!-- Luxury Sedans -->
+<div class="md:col-span-7 relative group rounded-3xl overflow-hidden reveal">
+<img alt="Luxury Sedan" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A pristine white executive luxury sedan parked in a sun-drenched, palm-lined street of Pondicherry's Heritage Quarter. The image captures the vehicle at an angle that highlights its aerodynamic profile and premium chrome accents. The environment is bright and airy, reflecting a high-key light-mode aesthetic. Soft shadows fall across the cobblestone street, and the overall mood is one of quiet sophistication and elite comfort." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEzgWQwF8rXJsWxHLtC-AuCv2Wf9-nDv_3ohhcfQ8oMwdlgRx0urA1p-Wmy7aluXhyITBqZvOUxSpTB4y1CRMETtq7qvEYdjluHzs-qDPvFTGkGjECYkXRLzHzw5ZE72QNv33wladGv3ZXXtqQbeFwEAf6_KMNnVfKikxQJGEDWpxXXmU0KfQ0fS91actSESTN7Nbi7MB5iDhRzVBRiloqqp94Z1lhNAJbHn_nHRMQefTqFnfY0zFcYZEfTo0-PdTp-jfwewCagS8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<span class="text-tertiary font-label-sm uppercase bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Executive</span>
+<h3 class="text-headline-lg font-display-lg mt-4">Premium Sedans</h3>
+<p class="text-white/80 max-w-sm">Perfect for airport transfers and professional meetings.</p>
+</div>
+</div>
+<!-- Luxury SUVs -->
+<div class="md:col-span-5 relative group rounded-3xl overflow-hidden reveal" style="transition-delay: 150ms">
+<img alt="Luxury SUV" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A robust yet elegant charcoal grey luxury SUV driving through a coastal landscape with the turquoise ocean visible in the background. The lighting is crisp and clear, showcasing the vehicle's powerful stance and high clearance. The scene is bright and energetic, embodying the luxury travel brand's commitment to comfortable journeys. The palette consists of cool blues, sandy beiges, and deep greys, creating a professional and adventurous aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFeZqn0S7TGU7jVP_ok4KB10lVNXwWsvhvm5mc0T-r-B4HyzpEP3JHRS-F9nRJR0DKoJ3hamie6ifqjxwuM9zYfuObsBsFVaE4Q-5R8LDJZLFaYNGyTvqAX0TeasaRMEaPCcqvKqCiTofT5VJtl4BbOb04ijCZQ8_nzNdJgRjUH4l4PSE35G9yMCaHkJVHdRZlV9e68WcwCQgSuHqwzKeVKm975BPzlmdMh4VQz9fGBqNJJBVFNiv2x1IQ2_3lCBuPUoQHYh8czsU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<span class="text-tertiary font-label-sm uppercase bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Adventure</span>
+<h3 class="text-headline-md font-display-lg mt-4">Luxury SUVs</h3>
+<p class="text-white/80">Command the road with ultimate space and power.</p>
+</div>
+</div>
+<!-- Tempo Travellers -->
+<div class="md:col-span-5 relative group rounded-3xl overflow-hidden reveal" style="transition-delay: 300ms">
+<img alt="Tempo Traveller" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An upscale, modified executive tempo traveller with large tinted windows, photographed in a bright, modern architectural setting. The vehicle is white with minimalist branding, parked on a clean grey paved surface. The image uses a soft, diffused lighting setup to avoid harsh reflections, emphasizing the clean lines and passenger comfort. The style is modern and minimalist, focusing on professional group transportation solutions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCurPN9ijIo-UeNXzJZ4v_4Lu0MAlHkvFcIuEQ1CfZkoT4eyIPk0EfYmfDsITz7vnv7JQ9EntTg-lwxryubK1YkMWoSiN7cwERhrNjactqDFolwKL3pWz7a9wGsEic221SX5sGAEF64Xt7nQBQV9fyn-1qIy6YmszfVDhzJv_yDjMRvnxcj4fuxgopaMUxYAnv1QmBugPO3hKGA2aO8qggJzehOby109NaUivbWh4BiqG9nTl00eTClFpwvWSXwRaKHfHkpjSFpdg0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<span class="text-tertiary font-label-sm uppercase bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Group</span>
+<h3 class="text-headline-md font-display-lg mt-4">Tempo Travellers</h3>
+<p class="text-white/80">Luxury group travel without compromise.</p>
+</div>
+</div>
+<!-- Luxury Buses -->
+<div class="md:col-span-7 relative group rounded-3xl overflow-hidden reveal" style="transition-delay: 450ms">
+<img alt="Luxury Coach" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A modern, high-deck luxury coach bus finished in a premium deep navy blue, standing elegantly in a spacious, well-lit terminal area. The lighting is bright and professional, highlighting the large panoramic windows and sleek design of the bus. The surrounding environment is minimalist and high-end, using a neutral color palette with gold accents that mirror the brand's luxury identity. The mood is one of reliability and grand-scale comfort." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLYz6QiQL0veBQdXWVaOW5XR88cH80a2FF9kmjMfIa57CTxAkVHaY49T5RFLihb9SYNFUZ-TFjXGb8v14eYOTWqcM1MaYx1Oft4HFmlrZGz4wMFvQRBw7_scYd_gc0j6uu3vaBSqWWvVYbMXfw1KunpPJZ7Ys74RKg9gHv3oejlAycvHRXf2sbhjtxIfNMdXrz9hJXoANODFFgZU4kqQWzXzln6S1ghQC8k4fu4dkMbaYHbVwBwF7qan_zJCjlMrpdwl5VpLkqdIs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white">
+<span class="text-tertiary font-label-sm uppercase bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">Grand</span>
+<h3 class="text-headline-lg font-display-lg mt-4">Luxury Coaches</h3>
+<p class="text-white/80">Experience first-class travel for large corporate events.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us Section -->
+<section class="py-32 bg-surface">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="reveal">
+<span class="text-tertiary font-label-md uppercase tracking-widest">Our Edge</span>
+<h2 class="font-display-lg text-headline-lg mt-4 mb-8">Redefining Private Travel in Pondicherry</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="person_check">person_check</span>
+</div>
+<div>
+<h5 class="font-bold mb-1">Professional Drivers</h5>
+<p class="text-on-surface-variant text-sm">Experienced and polite chauffeurs who know every route.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="clean_hands">clean_hands</span>
+</div>
+<div>
+<h5 class="font-bold mb-1">Clean Vehicles</h5>
+<p class="text-on-surface-variant text-sm">Immaculately maintained and sanitized after every ride.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<div>
+<h5 class="font-bold mb-1">Affordable Pricing</h5>
+<p class="text-on-surface-variant text-sm">Competitive rates with no hidden charges, guaranteed.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h5 class="font-bold mb-1">Safe Journeys</h5>
+<p class="text-on-surface-variant text-sm">GPS tracked vehicles and strict safety protocols.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="airline_seat_recline_extra">airline_seat_recline_extra</span>
+</div>
+<div>
+<h5 class="font-bold mb-1">Comfortable Travel</h5>
+<p class="text-on-surface-variant text-sm">Premium interiors and climate control for your peace.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h5 class="font-bold mb-1">24/7 Support</h5>
+<p class="text-on-surface-variant text-sm">Dedicated team available round the clock for assistance.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative reveal" style="transition-delay: 200ms">
+<div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+<img alt="Luxury Driving Experience" class="w-full h-full object-cover" data-alt="A close-up, high-detail shot of a professional chauffeur's gloved hand on the steering wheel of a modern luxury vehicle. The dashboard is sleek and high-tech, glowing softly in the ambient light of a dusky Pondicherry evening. The view through the windshield shows a softly blurred French Quarter street with its characteristic architectural charm. The image conveys a mood of precision, safety, and high-end service, using deep blacks and subtle gold lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtHevvO75jfu8Oyt0N1ECuj6d9czbfncue-G0-7cN7Ln3Xy1CPoKgpN1Zg4nnQYqdPGe45JQ_S0ABzD44aL9RO3ZnOiVsDziRU0qIKJZJFKGWT6qXLYesiDZBzSDv2q6nsMU6N3pzkU-mZjL7vF4XUCNJRrmvLg5ZUvjcjIQIyA4FTA_6zOxt7M1JyZiBeehvcwvwF8rAhEokZNsFzvxMCWpIqjM8lxdLb1rJqykHIpZSx2OHNAHld0h5DubbSH7PJzFurqcouAjY"/>
+</div>
+<div class="absolute -bottom-10 -left-10 glass-card p-8 rounded-2xl border-primary/20 max-w-xs shadow-xl">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-bold text-xl">10+</div>
+<span class="font-display-lg text-headline-md leading-tight">Years of Excellence</span>
+</div>
+<p class="text-sm opacity-80">Serving thousands of happy travelers with premium logistical solutions since 2014.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Review Slider -->
+<section class="py-32 bg-inverse-surface text-surface">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop text-center">
+<h2 class="font-display-lg text-headline-lg mb-16 reveal">Voices of Our Travelers</h2>
+<div class="relative max-w-4xl mx-auto reveal" style="transition-delay: 200ms">
+<!-- Simple Slider Logic Container -->
+<div class="overflow-hidden" id="testimonial-container">
+<div class="flex transition-transform duration-500 ease-out" id="testimonial-slider">
+<!-- Testimonial 1 -->
+<div class="min-w-full px-4">
+<div class="glass-card p-12 rounded-3xl border-white/5">
+<div class="flex justify-center gap-1 text-tertiary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-xl md:text-2xl italic mb-8">"The most professional car service I've used in India. The vehicle was spotless, and our driver Raj was incredibly knowledgeable about the hidden gems in Pondicherry."</p>
+<div class="flex items-center justify-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-variant overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD59IGAMIS07RpSng9QVPO5lxr_2wbqOkCyi9OXXcN7qdvExOVgPLBprq9gppr7qg0QUQFZDYdsXPVymti8-ZBJFx0LgCBsyvO8MsRQSJk617iqCC4WeLMjkkZWajuFAbGNXoxayAXibF_KBGQHd4y4VuC94QNfM-uMUGp7zPsj-cIzaHFGAju7HmoK0lAI55z1lkWBUTaiyRy2t8iBDg69QJbvwMuxAnx8fBkJ4Aa77UBNuLofWMoaUNxqaISkrVljLYM8EmMuo9k"/>
+</div>
+<div class="text-left">
+<h5 class="font-bold">David Chen</h5>
+<p class="text-sm text-surface-variant">Business Traveler, Singapore</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-4 mt-10">
+<button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- High Impact CTA Banner -->
+<section class="py-20 max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop mb-32 reveal">
+<div class="relative h-[400px] rounded-[2.5rem] overflow-hidden flex items-center px-12 md:px-24">
+<img alt="Wedding Car Decor" class="absolute inset-0 w-full h-full object-cover" data-alt="A beautifully decorated luxury white wedding car parked in front of a colonial-style building in Pondicherry. The car is adorned with fresh tropical flowers and elegant ribbons. The lighting is soft and romantic, with a focus on the delicate details of the decorations and the prestigious architecture. The overall aesthetic is one of luxury, celebration, and meticulous attention to detail, using a palette of soft pinks, pure whites, and warm golds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeuiAb4gu6rmudlIk-mINDVMgujF0fgKJ9OgAp1lNDA2gOD-wrtWg1NsLpN6fXJRmQoSVAQSNlxFH9PKpERiOdEDItmyHLkzWHPEhn0vNTmruab7w0FGRYtywRkn4kZ2QgBAb9UrJdzs459azbQqj7MLwBRzu58Ppr_uub_TVb30jEOnF7It5Bkqw9gr352tx77HGQgW3BTpun4y8S06ZeomxhDRIhcih-03caE9ef7s7LvVjDsSe1F6XQhrjGJ0yHhwYxn2Or068"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent"></div>
+<div class="relative z-10 text-white max-w-xl">
+<h2 class="font-display-lg text-headline-lg mb-6">Ready to Experience True Luxury?</h2>
+<p class="text-body-lg mb-8 text-white/90">Book your premium journey today and let us handle the logistics while you enjoy the ride.</p>
+<div class="flex gap-4">
+<a href="about-contact.html#contact" class="bg-white text-primary px-8 py-4 rounded-full font-label-md text-lg hover:scale-105 transition-all">Book Now</a>
+<a href="about-contact.html" class="border border-white text-white px-8 py-4 rounded-full font-label-md text-lg hover:bg-white/10 transition-all">Contact Us</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-surface-container-highest w-full py-16 border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-max-width mx-auto px-margin-desktop">
+<div class="space-y-6">
+<h2 class="font-display-lg text-headline-md text-surface dark:text-on-surface">SAZ Travels</h2>
+<p class="text-surface-variant font-body-md text-body-md">Pondicherry's premier luxury transportation partner, dedicated to providing seamless travel experiences since 2014.</p>
+</div>
+<div class="space-y-6">
+<h5 class="text-tertiary dark:text-tertiary-fixed font-bold uppercase tracking-widest text-sm">Services</h5>
+<ul class="space-y-3">
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="our-fleet.html">Fleet Selection</a></li>
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="tour-packages.html">Tour Packages</a></li>
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="about-contact.html#contact">Luxury Concierge</a></li>
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="about-contact.html#contact">Contact Support</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-tertiary dark:text-tertiary-fixed font-bold uppercase tracking-widest text-sm">Quick Links</h5>
+<ul class="space-y-3">
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="about-contact.html">About Us</a></li>
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Privacy Policy</a></li>
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Terms of Service</a></li>
+<li><a class="text-surface-variant hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Refund Policy</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-tertiary dark:text-tertiary-fixed font-bold uppercase tracking-widest text-sm">Contact</h5>
+<p class="text-surface-variant text-body-md">
+                    123, Heritage Street, Pondicherry 605001<br/>
+                    support@saztravels.com<br/>
+                    +91 98765 43210
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="facebook">social_leaderboard</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="instagram">retweet</span>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-max-width mx-auto px-margin-desktop mt-16 pt-8 border-t border-white/5 text-center">
+<p class="text-surface-variant text-body-md">© 2024 SAZ Travels. Premium Transportation &amp; Logistics.</p>
+</div>
+</footer>
+<!-- Mobile Bottom Nav -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-xl border-t border-outline-variant/30 px-2 py-2 z-50 flex justify-around items-center">
+  <a class="flex flex-col items-center gap-0.5 text-primary px-3 py-1 rounded-xl" href="index.html">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+    <span class="text-[10px] font-label-md">Home</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="our-fleet.html">
+    <span class="material-symbols-outlined">commute</span>
+    <span class="text-[10px] font-label-md">Fleet</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="tour-packages.html">
+    <span class="material-symbols-outlined">explore</span>
+    <span class="text-[10px] font-label-md">Packages</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="about-contact.html">
+    <span class="material-symbols-outlined">info</span>
+    <span class="text-[10px] font-label-md">About</span>
+  </a>
+  <a class="flex flex-col items-center gap-0.5 text-on-surface-variant px-3 py-1 rounded-xl hover:text-primary" href="about-contact.html#contact">
+    <span class="material-symbols-outlined">call</span>
+    <span class="text-[10px] font-label-md">Contact</span>
+  </a>
+</div>
+<script>
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Sticky Nav state
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hb1 = document.getElementById('hb1');
+        const hb2 = document.getElementById('hb2');
+        const hb3 = document.getElementById('hb3');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hb1.style.transform = mobileMenu.classList.contains('open') ? 'rotate(45deg) translateY(8px)' : '';
+            hb2.style.opacity = mobileMenu.classList.contains('open') ? '0' : '1';
+            hb3.style.transform = mobileMenu.classList.contains('open') ? 'rotate(-45deg) translateY(-8px)' : '';
+        });
+    </script>
+</body></html>
