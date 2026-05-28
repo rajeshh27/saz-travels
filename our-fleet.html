@@ -139,11 +139,11 @@
         }
     </script>
 </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden pb-20 md:pb-0">
 <!-- TopNavBar -->
-<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-white/20 shadow-[0_30px_60px_-15px_rgba(10,25,47,0.05)]" id="main-nav">
+<header class="absolute top-0 w-full z-50 bg-transparent border-none shadow-none" id="main-nav">
 <div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 md:px-margin-desktop h-20">
-  <a class="font-display-lg text-headline-md font-bold text-primary" href="index.html">SAZ Travels</a>
+  <a class="font-display-lg text-headline-md font-bold text-primary animate-fade-in" href="index.html">SAZ Travels</a>
   <nav class="hidden md:flex items-center gap-10 font-body-md text-label-md tracking-[0.05em]">
     <a class="text-on-surface hover:text-primary transition-colors duration-300" href="index.html">Home</a>
     <a class="text-primary relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-tertiary after:rounded-full" href="our-fleet.html">Fleet</a>
@@ -152,7 +152,7 @@
     <a class="text-on-surface hover:text-primary transition-colors duration-300" href="about-contact.html#contact">Contact</a>
   </nav>
   <div class="flex items-center gap-3">
-    <a href="about-contact.html#contact" class="hidden md:inline-flex bg-primary-container text-on-primary font-label-md py-3 px-8 rounded-full hover:scale-[1.02] active:scale-95 transition-transform shadow-[0_8px_20px_-4px_rgba(255,87,34,0.3)]">Book Now</a>
+    <a href="about-contact.html#contact" class="hidden md:inline-flex bg-primary text-white font-label-md py-2.5 px-6 rounded-full hover:scale-[1.02] active:scale-95 transition-transform shadow-lg shadow-primary/20">Book Now</a>
     <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-surface-container transition-colors" aria-label="Toggle menu">
       <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb1"></span>
       <span class="block w-6 h-0.5 bg-on-surface transition-all" id="hb2"></span>
@@ -172,26 +172,26 @@
   </div>
 </div>
 </header>
-<main class="pt-32 pb-24 hero-gradient min-h-screen">
+<main class="pt-24 md:pt-32 pb-8 hero-gradient min-h-screen">
 <!-- Hero Section -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop mb-20 text-center">
-<span class="font-label-md text-tertiary tracking-widest uppercase mb-4 block">Our Premium Fleet</span>
-<h1 class="font-display-lg text-display-lg text-on-surface mb-6 leading-tight">Elite Travel Solutions for <br/> Every Occasion.</h1>
-<p class="max-w-2xl mx-auto font-body-lg text-body-lg text-on-surface-variant">Experience the pinnacle of coastal luxury with our meticulously maintained vehicles, designed for comfort, safety, and sophisticated travel in Pondicherry.</p>
+<section class="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-margin-desktop mb-10 md:mb-20 text-center">
+<span class="font-label-md text-tertiary tracking-widest uppercase mb-2 md:mb-4 block">Our Premium Fleet</span>
+<h1 class="font-display-lg text-2xl sm:text-4xl md:text-display-lg text-on-surface mb-4 md:mb-6 leading-tight">Elite Travel Solutions for <br class="hidden sm:block"/> Every Occasion.</h1>
+<p class="max-w-2xl mx-auto font-body-lg text-sm md:text-body-lg text-on-surface-variant">Experience the pinnacle of coastal luxury with our meticulously maintained vehicles, designed for comfort, safety, and sophisticated travel in Pondicherry.</p>
 </section>
 <!-- Category Filter -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop mb-16">
-<div class="flex flex-wrap justify-center gap-4">
-<button class="px-8 py-3 rounded-full bg-primary text-on-primary font-label-md shadow-lg">All Vehicles</button>
-<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Executive Sedans</button>
-<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Premium SUVs</button>
-<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Tempo Travellers</button>
-<button class="px-8 py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all">Luxury Buses</button>
+<section class="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-margin-desktop mb-8 md:mb-16">
+<div class="flex flex-wrap justify-center gap-2 md:gap-4">
+<button class="px-5 md:px-8 py-2.5 md:py-3 rounded-full bg-primary text-on-primary font-label-md shadow-lg text-sm md:text-base">All Vehicles</button>
+<button class="px-5 md:px-8 py-2.5 md:py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all text-sm md:text-base">Executive Sedans</button>
+<button class="px-5 md:px-8 py-2.5 md:py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all text-sm md:text-base">Premium SUVs</button>
+<button class="px-5 md:px-8 py-2.5 md:py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all text-sm md:text-base">Tempo Travellers</button>
+<button class="px-5 md:px-8 py-2.5 md:py-3 rounded-full glass-card text-on-surface-variant font-label-md hover:bg-white/40 transition-all text-sm md:text-base">Luxury Buses</button>
 </div>
 </section>
 <!-- Fleet Grid -->
-<section class="max-w-[1280px] mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<section class="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-margin-desktop">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-gutter">
 <!-- Vehicle Card 1: Sedan -->
 <div class="glass-card rounded-xl overflow-hidden group transition-all duration-500 flex flex-col h-full">
 <div class="relative overflow-hidden h-64">
@@ -418,8 +418,8 @@
 </div>
 </section>
 <!-- Trust Features -->
-<section class="mt-24 max-w-[1280px] mx-auto px-margin-desktop">
-<div class="glass-card rounded-2xl p-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+<section class="mt-12 md:mt-24 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-margin-desktop">
+<div class="glass-card rounded-2xl p-6 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
 <div class="text-center">
 <span class="material-symbols-outlined text-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 1;">verified_user</span>
 <h4 class="font-headline-md text-on-surface mb-2">Sanitized Daily</h4>
@@ -444,8 +444,8 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-inverse-surface dark:bg-surface-container-highest w-full py-16">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-[1280px] mx-auto px-margin-desktop">
+<footer class="bg-inverse-surface w-full py-10 md:py-16">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-gutter max-w-[1280px] mx-auto px-4 sm:px-8 md:px-margin-desktop">
 <div class="col-span-1 md:col-span-1">
 <div class="font-display-lg text-headline-md text-surface dark:text-on-surface mb-6">SAZ Travels</div>
 <p class="text-surface-variant text-body-md mb-8">Elevating transportation through meticulous planning and premium fleet management in the heart of Pondicherry.</p>
@@ -477,15 +477,15 @@
 </div>
 <div class="flex items-center gap-3 text-surface-variant">
 <span class="material-symbols-outlined text-tertiary-fixed">call</span>
-<span>+91 98765 43210</span>
+<a href="tel:+919876543210" class="hover:text-white transition-colors">+91 98765 43210</a>
 </div>
 <div class="flex items-center gap-3 text-surface-variant">
 <span class="material-symbols-outlined text-tertiary-fixed">mail</span>
-<span>booking@saztravels.com</span>
+<a href="mailto:booking@saztravels.com" class="hover:text-white transition-colors">booking@saztravels.com</a>
 </div>
 </div>
 </div>
-<div class="max-w-[1280px] mx-auto px-margin-desktop mt-16 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-margin-desktop mt-10 md:mt-16 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
 <p class="text-surface-variant text-label-sm">© 2024 SAZ Travels. Premium Transportation &amp; Logistics.</p>
 <div class="flex gap-8 text-label-sm text-surface-variant">
 <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
